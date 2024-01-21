@@ -28,15 +28,16 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        $request->session()->regenerateToken();
-        $url='';
-        if ($request->user()->role == 'admin'){
-            $url = 'admin/dashbord';
-        }elseif ($request->user()->role == 'instructor'){
-            $url = 'instructor/dashbord';
-        }elseif ($request->user()->role == 'user'){
-            $url = 'dashbord';
+
+        $url = '';
+        if ($request->user()->role === 'admin'){
+            $url ='/admin/dashboard';
+        }else if ($request->user()->role === 'instructor') {
+            $url ='/Instructor/dashboard';
+        } else if ($request->user()->role === 'user') {
+            $url ='dashboard';
         }
+
         return redirect()->intended($url);
     }
 

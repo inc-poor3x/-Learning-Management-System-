@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-<h1>admin dashbord</h1>
+
+
+    <h1>admin dashbord</h1>
+
 </body>
 </html>
