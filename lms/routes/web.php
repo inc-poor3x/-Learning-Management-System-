@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +32,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Admin group middleware
+Route::middleware(['auth','roles:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.Dashboard');
+}); // End of admin group middleware
+
+// Admin group middleware
+Route::middleware(['auth','roles:instructor'])->group(function () {
+    Route::get('/Instructor/dashboard', [InstructorController::class, 'InstructorDashboard'])->name('Instructor.Dashboard');
+});  // End of instructor group middleware
